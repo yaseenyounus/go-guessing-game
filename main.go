@@ -50,7 +50,7 @@ func main() {
 	MAX_NUM := 10
 
 	goalNum := rand.Intn(MAX_NUM) + 1
-	fmt.Println(goalNum)
+	// fmt.Println(goalNum)
 
 	fmt.Printf("Welcome to Guessing Game!\nEnter numbers between 1 and %v\n\n", MAX_NUM)
 
