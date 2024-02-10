@@ -6,35 +6,40 @@ import (
 	"math/rand"
 )
 
-func numInput() int {
+func numInput(minNum, maxNum int) int {
 	var input int
 	for {
 		fmt.Print("Guess a number: ")
 		_, err := fmt.Scan(&input)
 		if err == nil {
-			return input
+			if input < minNum || input > maxNum {
+				fmt.Printf("Number doesn't fall in the range of %v - %v. Try again\n", minNum, maxNum)
+			} else {
+				return input
+			}
+		} else {
+			fmt.Println("That's not an integer. Try again")
 		}
-		fmt.Println("That's not an integer. Try again")
 	}
 }
 
-func playGame(goalNum, maxNum int) int {
+func playGame(goalNum, minNum, maxNum int) int {
 	var input int
 	counter := 0
 
 	for goalNum != input {
-		input = numInput()
+		input = numInput(minNum, maxNum)
 		counter++
 	}
 	return counter
 }
 
-func playGameWithHints(goalNum, maxNum int) int {
+func playGameWithHints(goalNum, minNum, maxNum int) int {
 	var input int
 	counter := 0
 
 	for goalNum != input {
-		input = numInput()
+		input = numInput(minNum, maxNum)
 		counter++
 
 		if input > goalNum {
@@ -48,8 +53,8 @@ func playGameWithHints(goalNum, maxNum int) int {
 
 // TODO
 
-
 func main() {
+	MIN_NUM := 1
 	MAX_NUM := 10
 
 	goalNum := rand.Intn(MAX_NUM) + 1
@@ -63,9 +68,9 @@ func main() {
 	var counter int
 	if *hints {
 		fmt.Println("Playing with hints")
-		counter = playGameWithHints(goalNum, MAX_NUM)
+		counter = playGameWithHints(goalNum, MIN_NUM, MAX_NUM)
 	} else {
-		counter = playGame(goalNum, MAX_NUM)
+		counter = playGame(goalNum, MIN_NUM, MAX_NUM)
 
 	}
 
