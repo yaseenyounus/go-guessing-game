@@ -24,8 +24,7 @@ func numInput(minNum, maxNum int) int {
 }
 
 func playGame(goalNum, minNum, maxNum int, hints *bool) int {
-	var input int
-	counter := 0
+	var input, counter int
 
 	for goalNum != input {
 		input = numInput(minNum, maxNum)
