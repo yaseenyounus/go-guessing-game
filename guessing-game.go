@@ -23,18 +23,7 @@ func numInput(minNum, maxNum int) int {
 	}
 }
 
-func playGame(goalNum, minNum, maxNum int) int {
-	var input int
-	counter := 0
-
-	for goalNum != input {
-		input = numInput(minNum, maxNum)
-		counter++
-	}
-	return counter
-}
-
-func playGameWithHints(goalNum, minNum, maxNum int) int {
+func playGame(goalNum, minNum, maxNum int, hints *bool) int {
 	var input int
 	counter := 0
 
@@ -42,16 +31,16 @@ func playGameWithHints(goalNum, minNum, maxNum int) int {
 		input = numInput(minNum, maxNum)
 		counter++
 
-		if input > goalNum {
-			fmt.Println("Nope, that's too big. Try again")
-		} else if input < goalNum {
-			fmt.Println("Nope, that's too small. Try again")
+		if *hints {
+			if input > goalNum {
+				fmt.Println("Nope, that's too big. Try again")
+			} else if input < goalNum {
+				fmt.Println("Nope, that's too small. Try again")
+			}
 		}
 	}
 	return counter
 }
-
-// TODO remove playGameWithHints and use playGame to check if *hints is set
 
 func main() {
 	MIN_NUM := 1
@@ -65,14 +54,7 @@ func main() {
 	hints := flag.Bool("hints", false, "Enables hints while guessing")
 	flag.Parse()
 
-	var counter int
-	if *hints {
-		fmt.Println("Playing with hints")
-		counter = playGameWithHints(goalNum, MIN_NUM, MAX_NUM)
-	} else {
-		counter = playGame(goalNum, MIN_NUM, MAX_NUM)
-
-	}
+	counter := playGame(goalNum, MIN_NUM, MAX_NUM, hints)
 
 	var guessString string
 	if counter == 1 {
