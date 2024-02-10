@@ -6,6 +6,8 @@ import (
 	"math/rand"
 )
 
+// TODO add easy (10), medium (50), and hard (100) options - updates MAX_NUM
+
 func numInput(minNum, maxNum int) int {
 	var input int
 	for {
@@ -48,10 +50,10 @@ func main() {
 	goalNum := rand.Intn(MAX_NUM) + 1
 	// fmt.Println(goalNum)
 
-	fmt.Printf("Welcome to Guessing Game!\nEnter numbers between 1 and %v\n\n", MAX_NUM)
-
 	hints := flag.Bool("hints", false, "Enables hints while guessing")
 	flag.Parse()
+
+	fmt.Printf("Welcome to Go Guessing Game (G3)!\nEnter numbers between 1 and %v\n\n", MAX_NUM)
 
 	counter := playGame(goalNum, MIN_NUM, MAX_NUM, hints)
 
