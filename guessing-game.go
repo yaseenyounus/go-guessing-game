@@ -46,6 +46,9 @@ func playGameWithHints(goalNum, maxNum int) int {
 	return counter
 }
 
+// TODO
+
+
 func main() {
 	MAX_NUM := 10
 
