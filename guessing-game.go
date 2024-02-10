@@ -51,7 +51,7 @@ func playGameWithHints(goalNum, minNum, maxNum int) int {
 	return counter
 }
 
-// TODO
+// TODO remove playGameWithHints and use playGame to check if *hints is set
 
 func main() {
 	MIN_NUM := 1
