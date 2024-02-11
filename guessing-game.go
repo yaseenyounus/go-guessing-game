@@ -6,7 +6,7 @@ import (
 	"math/rand"
 )
 
-// TODO add easy (10), medium (50), and hard (100) options - updates MAX_NUM
+// TODO update level flag with logic
 
 func numInput(minNum, maxNum int) int {
 	var input int
@@ -25,8 +25,13 @@ func numInput(minNum, maxNum int) int {
 	}
 }
 
-func playGame(goalNum, minNum, maxNum int, hints *bool) string {
+func playGame(hints *bool, level *int) string {
 	var input, counter int
+
+	minNum, maxNum := 1, 10
+	goalNum := rand.Intn(maxNum) + 1
+
+	fmt.Printf("Welcome to Go Guessing Game (G3)!\nEnter numbers between 1 and %v\n\n", maxNum)
 
 	for goalNum != input {
 		input = numInput(minNum, maxNum)
@@ -52,16 +57,9 @@ func playGame(goalNum, minNum, maxNum int, hints *bool) string {
 }
 
 func main() {
-	MIN_NUM := 1
-	MAX_NUM := 10
-
-	goalNum := rand.Intn(MAX_NUM) + 1
-	// fmt.Println(goalNum)
-
 	hints := flag.Bool("hints", false, "Enables hints while guessing")
+	level := flag.Int("level", 1, "Chooses a level - 1 (Easy), 2 (Medium), 3 (Hard)")
 	flag.Parse()
 
-	fmt.Printf("Welcome to Go Guessing Game (G3)!\nEnter numbers between 1 and %v\n\n", MAX_NUM)
-	fmt.Println(playGame(goalNum, MIN_NUM, MAX_NUM, hints))
-
+	fmt.Println(playGame(hints, level))
 }
