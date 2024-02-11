@@ -25,7 +25,7 @@ func numInput(minNum, maxNum int) int {
 	}
 }
 
-func playGame(goalNum, minNum, maxNum int, hints *bool) int {
+func playGame(goalNum, minNum, maxNum int, hints *bool) string {
 	var input, counter int
 
 	for goalNum != input {
@@ -40,7 +40,15 @@ func playGame(goalNum, minNum, maxNum int, hints *bool) int {
 			}
 		}
 	}
-	return counter
+
+	var guessString string
+	if counter == 1 {
+		guessString = "guess"
+	} else {
+		guessString = "guesses"
+	}
+	return fmt.Sprintf("That's correct, good work! Took you %v %v\n", counter, guessString)
+
 }
 
 func main() {
@@ -54,15 +62,6 @@ func main() {
 	flag.Parse()
 
 	fmt.Printf("Welcome to Go Guessing Game (G3)!\nEnter numbers between 1 and %v\n\n", MAX_NUM)
+	fmt.Println(playGame(goalNum, MIN_NUM, MAX_NUM, hints))
 
-	counter := playGame(goalNum, MIN_NUM, MAX_NUM, hints)
-
-	var guessString string
-	if counter == 1 {
-		guessString = "guess"
-	} else {
-		guessString = "guesses"
-	}
-
-	fmt.Printf("That's correct, good work! Took you %v %v\n", counter, guessString)
 }
