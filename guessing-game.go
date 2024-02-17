@@ -44,9 +44,10 @@ func playGame(hints *bool, level *int) string {
 		counter++
 
 		if *hints {
-			if input > goalNum {
+			switch {
+			case input > goalNum:
 				fmt.Println("Nope, that's too big. Try again")
-			} else if input < goalNum {
+			case input < goalNum:
 				fmt.Println("Nope, that's too small. Try again")
 			}
 		}
