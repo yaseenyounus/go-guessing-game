@@ -24,15 +24,16 @@ func numInput(minNum, maxNum int) int {
 }
 
 func playGame(hints *bool, level *int) string {
-	var input, counter, minNum, maxNum int
+	var input, counter, maxNum int
+	var minNum int = 1
 
 	switch *level {
 	case 1:
-		minNum, maxNum = 1, 10
+		maxNum = 10
 	case 2:
-		minNum, maxNum = 1, 50
+		maxNum = 50
 	case 3:
-		minNum, maxNum = 1, 100
+		maxNum = 100
 	}
 
 	goalNum := rand.Intn(maxNum) + 1
